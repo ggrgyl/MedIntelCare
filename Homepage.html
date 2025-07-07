@@ -361,6 +361,147 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        .quick-chat-button {
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        border-radius: 50%;
+        padding: 16px;
+        font-size: 20px;
+        cursor: pointer;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        z-index: 999;
+        transition: transform 0.3s ease;
+        }
+
+        .quick-chat-button:hover {
+        transform: scale(1.1);
+        }
+
+        .quick-chat-box {
+        display: none;
+        position: fixed;
+        bottom: 90px;
+        right: 25px;
+        width: 320px;
+        background: rgba(255,255,255,0.95);
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        z-index: 999;
+        display: flex;
+        flex-direction: column;
+        backdrop-filter: blur(10px);
+        transition: opacity 0.3s ease;
+        }
+
+        .quick-chat-header {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        padding: 10px 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: bold;
+        }
+
+        .quick-chat-header button {
+        background: transparent;
+        border: none;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+        }
+
+        .quick-chat-content {
+        padding: 10px;
+        flex: 1;
+        overflow-y: auto;
+        max-height: 250px;
+        }
+
+        .quick-chat-input {
+        display: flex;
+        border-top: 1px solid #ccc;
+        }
+
+        .quick-chat-input input {
+        flex: 1;
+        border: none;
+        padding: 10px;
+        font-size: 1rem;
+        border-radius: 0;
+        outline: none;
+        }
+
+        .quick-chat-input button {
+        background: #667eea;
+        color: white;
+        border: none;
+        padding: 0 15px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+        }
+
+        .quick-chat-input button:hover {
+        background: #5a63e0;
+        }
+
+        .message {
+        margin: 5px 0;
+        padding: 8px 12px;
+        border-radius: 12px;
+        max-width: 80%;
+        font-size: 0.95rem;
+        }
+
+        .message.ai {
+        background: #f0f0f0;
+        align-self: flex-start;
+        }
+
+        .message.user {
+        background: #e6e6ff;
+        align-self: flex-end;
+        margin-left: auto;
+        }
+
+        .account-dropdown {
+        position: absolute;
+        top: 80px;
+        right: 30px;
+        background: white;
+        color: #333;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        width: 200px;
+        display: none;
+        z-index: 999;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        }
+
+        .account-dropdown ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        }
+
+        .account-dropdown li {
+        padding: 12px 16px;
+        cursor: pointer;
+        transition: background 0.2s ease;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        }
+
+        .account-dropdown li:hover {
+        background-color: #f0f0ff;
+        }
     </style>
 </head>
 <body>
@@ -379,9 +520,21 @@
                     <a href="Homepage.html" class="nav-link active">Dashboard</a>
                     <a href="HealthRecords.html" class="nav-link">Health Records</a>
                     <a href="Appointments.html" class="nav-link">Appointments</a>
-                    <a href="#" class="nav-link">Chat</a>
-                    <div class="user-profile">C</div>
+                    <a href="Chat.html" class="nav-link">Chat</a>
                 </nav>
+
+                <div style="position: relative;">
+                    <div class="user-profile" onclick="toggleAccountMenu()">C</div>
+              
+                    <div id="accountMenu" class="account-dropdown">
+                      <ul>
+                        <li onclick="navigateTo('Profile.html')">👤 Profile</li>
+                        <li onclick="navigateTo('Settings.html')">⚙️ Settings</li>
+                        <li onclick="navigateTo('HelpCenter.html')">❓ Help Center</li>
+                        <li onclick="logout()">🚪 Logout</li>
+                      </ul>
+                    </div>
+                  </div>
             </div>
         </div>
     </header>
@@ -559,11 +712,27 @@
         </section>
     </main>
 
-    <button class="fab" title="Quick Chat">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <div class="quick-chat-button fab" onclick="toggleQuickChat()" title="Quick Chat">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
         </svg>
-    </button>
+    </div>
+
+<!-- Quick Chat Button and Overlay -->
+<div class="quick-chat-box" id="quickChatBox">
+  <div class="quick-chat-header">
+    <strong>Quick Chat</strong>
+    <button onclick="toggleQuickChat()">×</button>
+  </div>
+  <div class="quick-chat-content" id="quickChatContent">
+    <div class="message ai">Hi! How can we help?</div>
+  </div>
+  <form class="quick-chat-input" onsubmit="sendQuickChat(event)">
+    <input type="text" id="quickChatMessage" placeholder="Type message..." required />
+    <button type="submit">Send</button>
+  </form>
+</div>
+
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -652,6 +821,72 @@
             }
         `;
         document.head.appendChild(style);
+
+        function toggleQuickChat() {
+            const chatBox = document.getElementById('quickChatBox');
+            const currentDisplay = window.getComputedStyle(chatBox).display;
+            chatBox.style.display = currentDisplay === 'none' ? 'flex' : 'none';
+        }
+
+        function sendQuickChat(event) {
+            event.preventDefault();
+            const input = document.getElementById('quickChatMessage');
+            const message = input.value.trim();
+            if (message !== '') {
+            const chatContent = document.getElementById('quickChatContent');
+
+            const userMsg = document.createElement('div');
+            userMsg.className = 'message user';
+            userMsg.textContent = message;
+            chatContent.appendChild(userMsg);
+
+            input.value = '';
+            chatContent.scrollTop = chatContent.scrollHeight;
+
+            setTimeout(() => {
+                const aiReply = document.createElement('div');
+                aiReply.className = 'message ai';
+                aiReply.textContent = getQuickReply(message);
+                chatContent.appendChild(aiReply);
+                chatContent.scrollTop = chatContent.scrollHeight;
+            }, 800);
+            }
+        }
+
+        function getQuickReply(msg) {
+            const text = msg.toLowerCase();
+            if (text.includes('fever') || text.includes('headache')) {
+            return "You may take paracetamol and rest. Monitor your temperature.";
+            } else if (text.includes('appointment')) {
+            return "Would you like to visit the Appointments page?";
+            } else {
+            return "Thank you for your message. We'll get back to you shortly.";
+            }
+        }
+
+        function toggleAccountMenu() {
+            const menu = document.getElementById("accountMenu");
+            menu.style.display = menu.style.display === "block" ? "none" : "block";
+            }
+
+            // Optional: hide menu if user clicks outside
+            window.addEventListener("click", function (e) {
+            const menu = document.getElementById("accountMenu");
+            const profile = document.querySelector(".user-profile");
+
+            if (!menu.contains(e.target) && !profile.contains(e.target)) {
+                menu.style.display = "none";
+            }
+            });
+
+            function navigateTo(page) {
+            window.location.href = page;
+            }
+
+            function logout() {
+            alert("You have been logged out.");
+            window.location.href = "index.html"; // Change this to your actual login page
+        }
     </script>
 </body>
 </html>

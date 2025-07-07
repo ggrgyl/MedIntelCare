@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chat | MedIntelCare</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    header {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      padding: 20px;
+    }
+
+    .nav-menu {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .nav-link {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+      padding: 6px 10px;
+      border-radius: 20px;
+    }
+
+    .nav-link:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      height: 2px;
+      width: 0;
+      background: white;
+      transition: width 0.3s;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .chat-box {
+      background: rgba(255,255,255,0.9);
+      border-radius: 20px;
+      padding: 25px;
+      color: #333;
+      max-height: 500px;
+      overflow-y: auto;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .message {
+      margin-bottom: 15px;
+      padding: 10px 15px;
+      border-radius: 12px;
+      max-width: 75%;
+      line-height: 1.4;
+    }
+
+    .user {
+      background: #e6e6ff;
+      align-self: flex-end;
+      margin-left: auto;
+    }
+
+    .ai {
+      background: #f3f3f3;
+      align-self: flex-start;
+    }
+
+    .chat-input {
+      display: flex;
+      margin-top: 20px;
+      gap: 10px;
+    }
+
+    .chat-input textarea {
+      flex: 1;
+      padding: 12px;
+      border-radius: 10px;
+      border: none;
+      font-size: 1rem;
+      resize: none;
+      height: 50px;
+      color: #333;
+      background: rgba(255,255,255,0.8);
+    }
+
+    .chat-input button {
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 0 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .chat-input button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .bg-decoration {
+      position: fixed;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      z-index: -1;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .bg-decoration:nth-child(1) { top: 10%; right: 10%; animation-delay: 0s; }
+    .bg-decoration:nth-child(2) { bottom: 20%; left: 5%; animation-delay: 2s; }
+    .bg-decoration:nth-child(3) { top: 50%; left: -5%; animation-delay: 4s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-decoration"></div>
+  <div class="bg-decoration"></div>
+  <div class="bg-decoration"></div>
+
+  <header>
+    <nav class="nav-menu">
+      <a href="Homepage.html" class="nav-link">Dashboard</a>
+      <a href="HealthRecords.html" class="nav-link">Health Records</a>
+      <a href="Appointments.html" class="nav-link">Appointments</a>
+      <a href="Chat.html" class="nav-link active">Chat</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1>AI Health Chat</h1>
+    <div class="chat-box">
+      <div class="message ai">Hello! How can I assist you with your health today?</div>
+      <div class="message user">I have a headache and slight fever. What should I do?</div>
+      <div class="message ai">Please rest, stay hydrated, and monitor your temperature. Would you like to book an appointment?</div>
+    </div>
+
+    <form class="chat-input" onsubmit="sendMessage(event)">
+      <textarea id="userMessage" placeholder="Type your message here..." required></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </main>
+
+  <script>
+    function sendMessage(event) {
+      event.preventDefault();
+      const textarea = document.getElementById('userMessage');
+      const message = textarea.value.trim();
+      if (message !== '') {
+        const chatBox = document.querySelector('.chat-box');
+        const userMsg = document.createElement('div');
+        userMsg.className = 'message user';
+        userMsg.textContent = message;
+        chatBox.appendChild(userMsg);
+        textarea.value = '';
+        chatBox.scrollTop = chatBox.scrollHeight;
+
+        // Simulate AI reply
+        setTimeout(() => {
+          const aiReply = document.createElement('div');
+          aiReply.className = 'message ai';
+          aiReply.textContent = "Thank you for your message. An AI assistant will respond shortly.";
+          chatBox.appendChild(aiReply);
+          chatBox.scrollTop = chatBox.scrollHeight;
+        }, 1000);
+      }
+    }
+  </script>
+</body>
+</html>

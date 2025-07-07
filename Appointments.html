@@ -21,6 +21,12 @@
       padding: 20px;
     }
 
+    .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    }
+
     .nav-menu {
       display: flex;
       justify-content: center;
@@ -62,7 +68,7 @@
     }
 
     main {
-      padding: 60px 20px;
+      padding-top: 20px;
       color: white;
     }
 
@@ -72,7 +78,10 @@
       background: rgba(255,255,255,0.1);
       backdrop-filter: blur(10px);
       border-radius: 16px;
-      padding: 40px;
+      padding-top: 10px;
+      padding-left: 60px;
+      padding-right: 60px;
+      padding-bottom: 40px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     }
 
@@ -111,7 +120,7 @@
     }
 
     .appointment-section button:hover {
-      transform: scale(1.05);
+        transform: scale(1.05);
       box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     }
 
@@ -145,8 +154,6 @@
   <div class="bg-decoration"></div>
 
   <header>
-    <div class="container">
-      <div class="header-content">
         <nav class="nav-menu">
           <a href="Homepage.html" class="nav-link">Dashboard</a>
           <a href="HealthRecords.html" class="nav-link">Health Records</a>

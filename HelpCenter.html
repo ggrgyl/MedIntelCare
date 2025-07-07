@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Help Center - MedIntelCare</title>
+  <!-- Remove this if you're not using an external CSS file -->
+  <!-- <link rel="stylesheet" href="styles.css" /> -->
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      margin: 0;
+      color: #333;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 20px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 25px;
+    }
+
+    .nav-link {
+      color: white;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      transition: background 0.3s ease;
+    }
+
+    .nav-link.active, .nav-link:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .help-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .help-header h1 {
+      font-size: 2.5rem;
+      color: #667eea;
+      margin-bottom: 10px;
+    }
+
+    .help-header p {
+      font-size: 1.1rem;
+      color: #555;
+    }
+
+    .faq {
+      margin-bottom: 30px;
+    }
+
+    .faq h2 {
+      font-size: 1.3rem;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .faq p {
+      color: #666;
+      line-height: 1.6;
+    }
+
+    .contact-support {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #ddd;
+    }
+
+    .contact-support p {
+      color: #555;
+    }
+
+    .contact-support a {
+      display: inline-block;
+      margin-top: 10px;
+      background: #667eea;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 25px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .contact-support a:hover {
+      background: #5a63e0;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="Homepage.html" class="logo">MedIntelCare</a>
+    <nav class="nav-menu">
+      <a href="Homepage.html" class="nav-link">Dashboard</a>
+      <a href="HealthRecords.html" class="nav-link">Health Records</a>
+      <a href="Appointments.html" class="nav-link">Appointments</a>
+      <a href="HelpCenter.html" class="nav-link active">Help Center</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="help-header">
+      <h1>Help Center</h1>
+      <p>We're here to assist you. Browse FAQs or contact support below.</p>
+    </div>
+
+    <section class="faq">
+      <h2>🩺 How do I book an appointment?</h2>
+      <p>Go to the "Appointments" page and click “Book Appointment.” Fill in the required fields and confirm your schedule.</p>
+    </section>
+
+    <section class="faq">
+      <h2>📄 Where can I access my health records?</h2>
+      <p>Click on the "Health Records" page from the dashboard. You’ll find your past checkups, prescriptions, and lab results.</p>
+    </section>
+
+    <section class="faq">
+      <h2>💬 How does the AI health chat work?</h2>
+      <p>The AI Health Chat provides fast replies for common symptoms, medication guidance, and tips. It is not a replacement for your doctor.</p>
+    </section>
+
+    <section class="faq">
+      <h2>🔐 How do I change my account details?</h2>
+      <p>Click the account icon in the top-right corner, then select “Profile” or “Settings” to make changes.</p>
+    </section>
+
+    <div class="contact-support">
+      <p>Still need help?</p>
+      <a href="mailto:support@medintelcare.com">Contact Support</a>
+    </div>
+  </main>
+
+</body>
+</html>
