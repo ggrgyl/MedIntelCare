@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Appointments | MedIntelCare</title>
+  <link rel="stylesheet" href="Homepage.css"> <!-- Assuming styles are shared -->
+  <style>
+    main {
+      padding: 60px 20px;
+      color: white;
+    }
+
+    .appointment-section {
+      max-width: 700px;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .appointment-section h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2rem;
+    }
+
+    .appointment-section form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .appointment-section input,
+    .appointment-section select,
+    .appointment-section textarea {
+      padding: 12px;
+      border-radius: 10px;
+      border: none;
+      font-size: 1rem;
+      background: rgba(255,255,255,0.8);
+      color: #333;
+    }
+
+    .appointment-section button {
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      color: white;
+      padding: 14px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .appointment-section button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-decoration"></div>
+  <div class="bg-decoration"></div>
+  <div class="bg-decoration"></div>
+
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="index.html" class="logo">
+          <div class="logo-icon">+</div>
+          <span>MedIntelCare</span>
+        </a>
+        <nav class="nav-menu">
+          <a href="Homepage.html" class="nav-link">Dashboard</a>
+          <a href="HealthRecords.html" class="nav-link">Health Records</a>
+          <a href="appointments.html" class="nav-link active">Appointments</a>
+          <a href="#" class="nav-link">Chat</a>
+          <div class="user-profile">C</div>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <section class="appointment-section">
+        <h2>Book an Appointment</h2>
+        <form action="#" method="post">
+          <input type="text" name="fullname" placeholder="Full Name" required>
+          <input type="email" name="email" placeholder="Email Address" required>
+          <input type="date" name="date" required>
+          <input type="time" name="time" required>
+          <select name="specialist" required>
+            <option value="">-- Select Specialist --</option>
+            <option value="general">General Physician</option>
+            <option value="dermatologist">Dermatologist</option>
+            <option value="cardiologist">Cardiologist</option>
+          </select>
+          <textarea name="message" rows="4" placeholder="Additional Notes"></textarea>
+          <button type="submit">Confirm Appointment</button>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <script src="Homepage.js"></script>
+</body>
+</html>
