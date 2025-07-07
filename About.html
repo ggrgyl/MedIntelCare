@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About - MedIntelCare</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    body {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      font-family: 'Inter', sans-serif;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    section {
+      margin-bottom: 60px;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: #ffffff;
+    }
+
+    p {
+      font-size: 1.15rem;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    a.nav-link {
+      color: white;
+      margin-right: 20px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    header {
+      margin-bottom: 60px;
+    }
+
+    /* Background decorations */
+    .bg-decoration {
+        position: absolute;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        z-index: -1;
+        animation: float 6s ease-in-out infinite;
+    }
+
+    .bg-decoration:nth-child(1) {
+    top: 10%;
+    right: 10%;
+    animation-delay: 0s;
+    }
+
+    .bg-decoration:nth-child(2) {
+      top: 20%;
+      right: 15%;
+      width: 100px;
+      height: 100px;
+      animation-delay: 1s;
+    }   
+
+    .bg-decoration:nth-child(3) {
+    bottom: 20%;
+    left: 10%;
+    animation-delay: 2s;
+    }       
+
+    .bg-decoration:nth-child(4) {
+    bottom: 15%;
+    left: 5%;
+    animation-delay: 3s;
+    }
+    
+    .bg-decoration:nth-child(5) {
+      top: 50%;
+      left: 45%;
+      animation-delay: 4s;
+    }
+
+    /* Animations */
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-15px);
+        }
+    }
+
+    
+  a.nav-link {
+    color: white;
+    margin-right: 20px;
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    transition: opacity 0.3s ease;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: white;
+    transition: width 0.3s ease;
+  }
+
+  .nav-link:hover {
+    opacity: 0.8;
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+  </style>
+</head>
+<body>
+    <div class="bg-decoration"></div>
+    <div class="bg-decoration"></div>
+    <div class="bg-decoration"></div>
+    <div class="bg-decoration"></div>
+    <div class="bg-decoration"></div>
+
+  <header>
+    <div class="container">
+      <a href="LandingPage.html" class="nav-link">Home</a>
+      <a href="Contact Us.html" class="nav-link">Contact Us</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <h1>About MedIntelCare</h1>
+
+    <section>
+      <h2>Mission</h2>
+      <p>To provide accessible, intelligent, and reliable AI-driven healthcare support to individuals worldwide—empowering people to manage their health with confidence and ease.</p>
+    </section>
+
+    <section>
+      <h2>Vision</h2>
+      <p>To become the leading global provider of virtual health assistance through innovative artificial intelligence, transforming the way people engage with healthcare.</p>
+    </section>
+
+    <section>
+      <h2>Our History</h2>
+      <p>Founded in 2024 by a group of passionate health tech innovators, MedIntelCare was created to solve the challenge of delivering accessible medical insights to underserved communities. Today, it continues to grow as a trusted platform for AI-powered health support, used by thousands worldwide.</p>
+    </section>
+  </div>
+</body>
+</html>

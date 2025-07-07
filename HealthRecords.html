@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health Records - MedIntelCare</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    header {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      padding: 20px;
+    }
+
+    .nav-menu {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .nav-link {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+      padding: 6px 10px;
+      border-radius: 20px;
+    }
+
+    .nav-link:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      height: 2px;
+      width: 0;
+      background: white;
+      transition: width 0.3s;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .records {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      padding: 30px;
+      color: #333;
+    }
+
+    .record-group {
+      margin-bottom: 20px;
+    }
+
+    .record-label {
+      font-weight: 600;
+    }
+
+    .record-value {
+      margin-left: 10px;
+      color: #667eea;
+    }
+
+    .bg-decoration {
+      position: fixed;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      z-index: -1;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .bg-decoration:nth-child(1) { top: 10%; right: 10%; animation-delay: 0s; }
+    .bg-decoration:nth-child(2) { bottom: 20%; left: 5%; animation-delay: 2s; }
+    .bg-decoration:nth-child(3) { top: 50%; left: -5%; animation-delay: 4s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-decoration"></div>
+  <div class="bg-decoration"></div>
+  <div class="bg-decoration"></div>
+
+  <header>
+    <nav class="nav-menu">
+      <a href="Homepage.html" class="nav-link">Dashboard</a>
+      <a href="HealthRecords.html" class="nav-link active">Health Records</a>
+      <a href="Appointments.html" class="nav-link">Appointments</a>
+      <a href="Chat.html" class="nav-link">Chat</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1>Your Vital Signs</h1>
+    <div class="records">
+      <div class="record-group">
+        <span class="record-label">Blood Pressure:</span>
+        <span class="record-value">120/80 mmHg</span>
+      </div>
+      <div class="record-group">
+        <span class="record-label">Heart Rate:</span>
+        <span class="record-value">72 bpm</span>
+      </div>
+      <div class="record-group">
+        <span class="record-label">Respiratory Rate:</span>
+        <span class="record-value">16 breaths/min</span>
+      </div>
+      <div class="record-group">
+        <span class="record-label">Temperature:</span>
+        <span class="record-value">36.7 °C</span>
+      </div>
+      <div class="record-group">
+        <span class="record-label">Oxygen Saturation:</span>
+        <span class="record-value">98%</span>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

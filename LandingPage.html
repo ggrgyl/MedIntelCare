@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedIntelCare - Your AI Health Care Companion</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            padding: 20px 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #667eea;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            opacity: 0.8;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .hero-left {
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: white;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            color: #667eea;
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            background: #f8f9ff;
+        }
+
+        .hero-right {
+            position: relative;
+            animation: slideInRight 0.8s ease-out;
+        }
+
+        .doctor-illustration {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            margin: 0 auto;
+            display: block;
+            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.2));
+        }
+
+        .floating-icon {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .floating-icon:nth-child(1) {
+            top: 20%;
+            left: -10%;
+            animation-delay: 0s;
+        }
+
+        .floating-icon:nth-child(2) {
+            top: 60%;
+            right: -10%;
+            animation-delay: 1s;
+        }
+
+        .floating-icon:nth-child(3) {
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 2s;
+        }
+
+        /* Background decorations */
+        .bg-decoration {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            z-index: -1;
+        }
+
+        .bg-decoration:nth-child(1) {
+            top: 10%;
+            right: 10%;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .bg-decoration:nth-child(2) {
+            bottom: 20%;
+            left: 5%;
+            animation: float 4s ease-in-out infinite reverse;
+        }
+
+        /* Animations */
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .floating-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero {
+                padding: 40px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-decoration"></div>
+    <div class="bg-decoration"></div>
+    
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <div class="logo-icon">+</div>
+                    <span>MedIntelCare</span>
+                </a>
+                <nav>
+                    <a href="About.html" class="nav-link">About</a> 
+                    <a href="Contact Us.html" class="nav-link">&ensp;Contact Us</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-left">
+                        <h1 class="hero-title">Your AI Health Care Companion</h1>
+                        <p class="hero-subtitle">
+                            Experience personalized healthcare guidance powered by advanced AI technology. 
+                            Get instant medical insights, symptom analysis, and health recommendations 
+                            tailored to your unique needs.
+                        </p>
+                        <a href="Homepage.html" class="cta-button">
+                            Get Started
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                        
+                    </div>
+                    <div class="hero-right">
+                        <div class="floating-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                            </svg>
+                        </div>
+                        <div class="floating-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                            </svg>
+                        </div>
+                        <div class="floating-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="13" r="8"/>
+                                <path d="M5 5l14 14"/>
+                                <path d="M13 13a3 3 0 1 0 0-6h-3v9a3 3 0 0 0 3-3z"/>
+                            </svg>
+                        </div>
+                        
+                        <!-- AI Doctor Illustration 
+                        <svg class="doctor-illustration" viewBox="0 0 400 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Doctor figure 
+                            <ellipse cx="200" cy="480" rx="80" ry="15" fill="rgba(255,255,255,0.1)"/>
+                            
+                            <!-- Lab coat 
+                            <path d="M120 200 L120 450 L280 450 L280 200 L250 180 L230 200 L170 200 L150 180 Z" fill="white" opacity="0.95"/>
+                            
+                            <!-- Body 
+                            <ellipse cx="200" cy="150" rx="40" ry="50" fill="#FFD4B3"/>
+                            
+                            <!-- Head 
+                            <circle cx="200" cy="80" r="35" fill="#FFD4B3"/>
+                            
+                            <!-- Hair 
+                            <path d="M165 60 Q200 40 235 60 Q240 45 235 50 Q200 35 165 50 Q160 45 165 60" fill="#8B4513"/>
+                            
+                            <!-- Eyes 
+                            <circle cx="190" cy="75" r="3" fill="#333"/>
+                            <circle cx="210" cy="75" r="3" fill="#333"/>
+                            
+                            <!-- Nose 
+                            <path d="M200 82 L198 86 L202 86 Z" fill="#E6B89C"/>
+                            
+                            <!-- Mouth 
+                            <path d="M195 90 Q200 93 205 90" stroke="#333" stroke-width="1.5" fill="none"/>
+                            
+                            <!-- Stethoscope 
+                            <path d="M180 120 Q200 110 220 120 L220 160 Q225 165 220 170 Q215 165 220 160 L220 140 Q200 130 180 140 L180 160 Q175 165 180 170 Q185 165 180 160 Z" stroke="#333" stroke-width="3" fill="none"/>
+                            <circle cx="180" cy="170" r="8" fill="#333"/>
+                            <circle cx="220" cy="170" r="8" fill="#333"/>
+                            
+                            <!-- Arms 
+                            <ellipse cx="150" cy="180" rx="15" ry="40" fill="#FFD4B3"/>
+                            <ellipse cx="250" cy="180" rx="15" ry="40" fill="#FFD4B3"/>
+                            
+                            <!-- Hands 
+                            <circle cx="150" cy="220" r="12" fill="#FFD4B3"/>
+                            <circle cx="250" cy="220" r="12" fill="#FFD4B3"/>
+                            
+                            <!-- Medical cross on coat 
+                            <rect x="195" y="250" width="10" height="30" fill="#667eea"/>
+                            <rect x="185" y="260" width="30" height="10" fill="#667eea"/>
+                        </svg> -->
+                           
+                        <picture>
+                            <source srcset="images/assets_task_01jzj4a7nvf048ct6hw0q7hhp6_1751881475_img_0.webp" type="image/webp">
+                            <img src="images/assets_task_01jzj4a7nvf048ct6hw0q7hhp6_1751881475_img_0.webp" alt="AI Doctor Illustration" class="doctor-illustration">
+                        </picture>
+
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Add smooth scrolling and interaction effects
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctaButton = document.querySelector('.cta-button');
+            const floatingIcons = document.querySelectorAll('.floating-icon');
+            
+            // CTA button click animation
+            ctaButton.addEventListener('click', function(e) {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+            
+            // Add hover effects to floating icons
+            floatingIcons.forEach(icon => {
+                icon.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.1) translateY(-5px)';
+                    this.style.background = 'rgba(255, 255, 255, 0.3)';
+                });
+                
+                icon.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                    this.style.background = 'rgba(255, 255, 255, 0.2)';
+                });
+            });
+            
+            // Parallax effect for background decorations
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                const decorations = document.querySelectorAll('.bg-decoration');
+                
+                decorations.forEach((decoration, index) => {
+                    const rate = scrolled * -0.5;
+                    decoration.style.transform = `translateY(${rate}px)`;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
